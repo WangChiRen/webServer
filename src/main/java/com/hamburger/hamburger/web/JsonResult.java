@@ -5,7 +5,7 @@ import com.hamburger.hamburger.ex.ServiceException;
 import lombok.Data;
 
 /**
- * 響應結果
+ * 響應json結果
  */
 @Data
 public class JsonResult {

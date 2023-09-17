@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hamburger.hamburger.mapper.OrderManagementMapper">
+
+
+    <!-- List<HamburgerListOrderVO> listOrder();-->
+    <!--查詢所有Order表中的訂單數據-->
+    <select id="listOrder" resultType="com.hamburger.hamburger.pojo.vo.HamburgerListOrderVO">
+        SELECT
+        id,commodity,unitprice,quantity,total,ordernumber,schedule,today
+        FROM
+        hamburgerorder
+        ORDER BY
+        id;
+    </select>
+
+
+
+
+
+</mapper>

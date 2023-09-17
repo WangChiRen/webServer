@@ -9,6 +9,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -28,10 +29,17 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler
-    public JsonResult handleThrowable(Throwable e) {
-        log.error("統一處理未明確異常[{}],將向客戶端響應:{}", e.getClass().getName(), e.getMessage());
-        String message = "服務器忙線,請聯繫管理員";
+    public JsonResult handleThrowable(Throwable e){
+        log.error("統一處理未明確的異常【{}】，將向客戶端響應:{}",e.getClass().getName(),e.getMessage());
+        String message = "服务器忙，请联系管理员！";
         return JsonResult.fail(ServiceCode.ERR_UNKNOWN,message);
+    }
+
+    @ExceptionHandler
+    public JsonResult handleIOException(IOException e){
+        log.error("統一處理IOException異常,將向客戶端響應:{}", e.getMessage());
+        String message = "圖片保存失敗，請檢查路徑是否存在";
+        return JsonResult.fail(ServiceCode.ERR_IMG_PATH,message);
     }
 
 

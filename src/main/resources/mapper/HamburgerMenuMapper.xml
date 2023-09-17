@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hamburger.hamburger.mapper.HamburgerMenuMapper">
+
+
+    <!--int insert(Hamburger hamburger);-->
+    <!--添加訂單-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+       INSERT INTO hamburgermenu(
+       commodity,unitprice,quantity,total,ordernumber,schedule,today
+       )VALUES (
+       #{commodity},#{unitprice},#{quantity},#{total},#{ordernumber},#{schedule},#{today}
+       )
+    </insert>
+
+
+    <!-- int count();-->
+    <!--查詢所有訂單數-->
+    <select id="count" resultType="int">
+    SELECT count(*) FROM hamburgermenu;
+    </select>
+
+
+    <!--List<HamburgerListItemVO> list();-->
+    <!--查詢所有addMenu表中的訂單數據-->
+    <select id="listMenu" resultType="com.hamburger.hamburger.pojo.vo.HamburgerListMenuVO">
+        SELECT
+        id,commodity,meals,unitprice,recommend,descride
+        FROM
+        addmenu
+        ORDER BY
+        id;
+    </select>
+
+
+</mapper>

@@ -3,11 +3,10 @@ package com.hamburger.hamburger.pojo.vo;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.List;
+
 
 @Data
-public class HamburgerUpdateDetailVO implements Serializable {
-
+public class HamburgerListEditMenuVO implements Serializable {
 
     /**
      * 數據id
@@ -22,19 +21,26 @@ public class HamburgerUpdateDetailVO implements Serializable {
 
 
     /**
-     * 單價
+     * 餐點名稱
+     */
+    private String meals;
+
+
+    /**
+     * 餐點單價
      */
     private Integer unitprice;
 
 
     /**
-     * 數量
+     * 餐點推薦指數
      */
-    private Integer quantity;
+    private Double recommend;
+
 
     /**
-     * 總價
+     * 餐點描述
      */
-    private Integer total;
+    private String descride;
 
 }

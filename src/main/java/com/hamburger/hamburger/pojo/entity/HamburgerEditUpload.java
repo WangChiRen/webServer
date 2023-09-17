@@ -6,20 +6,17 @@ import java.io.Serializable;
 
 
 @Data
-public class HamburgerUpdate implements Serializable {
+public class HamburgerEditUpload implements Serializable {
 
     /**
      * 數據id
      */
     private Integer id;
 
-    /**
-     * 數量
-     */
-    private Integer quantity;
 
     /**
-     * 總價
+     * 存圖片
      */
-    private Integer total;
+    private String commodity;
+
 }

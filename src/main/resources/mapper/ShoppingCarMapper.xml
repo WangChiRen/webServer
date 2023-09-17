@@ -2,24 +2,15 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hamburger.hamburger.mapper.HamburgerMapper">
+<mapper namespace="com.hamburger.hamburger.mapper.ShoppingCarMapper">
 
 
-    <!--   int insert(Hamburger hamburger);-->
-    <!--添加訂單-->
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-       INSERT INTO hamburgermenu(
-       commodity,unitprice,quantity,total,ordernumber,schedule,today
-       )VALUES (
-       #{commodity},#{unitprice},#{quantity},#{total},#{ordernumber},#{schedule},#{today}
-       )
-    </insert>
-
-    <!--int insert(HamburgerOrder hamburgerOrder);-->
+    <!-- int insertOrder();-->
     <!--添加所有數據至Order-->
     <insert id="insertOrder">
         INSERT hamburgerorder SELECT * FROM hamburgermenu;
     </insert>
+
 
     <!--int deleteById(Integer id);-->
     <!--根據id刪除訂單-->
@@ -27,9 +18,17 @@
         DELETE FROM hamburgermenu WHERE id=#{id}
     </delete>
 
+
     <!--int deleteByData();-->
     <!--刪除全部訂單-->
     <delete id="deleteByData">
+        DELETE FROM hamburgermenu;
+    </delete>
+
+
+    <!--int deleteByData();-->
+    <!--刪除全部訂單-->
+    <delete id="deleteShoppingCartData">
         DELETE FROM hamburgermenu;
     </delete>
 
@@ -47,6 +46,7 @@
         WHERE
         ordernumber=0
     </update>
+
 
     <!--int updateById(Hamburger hamburger);-->
     <!--修改訂單數量金額-->
@@ -66,31 +66,26 @@
     </update>
 
 
-    <!--List<HamburgerListItemVO> list();-->
-    <!--查詢所有menu表中的訂單數據-->
-    <select id="list" resultType="com.hamburger.hamburger.pojo.vo.HamburgerListItemVO">
-        SELECT
-        id,commodity,unitprice,quantity,total
-        FROM
-        hamburgermenu
-        ORDER BY
-        id;
-    </select>
+<!--    <update id="updateById" parameterType="java.util.List">-->
+<!--        <foreach collection="list" item="item" separator=";">-->
+<!--            UPDATE hamburgermenu-->
+<!--            <set>-->
+<!--                <if test="item.quantity != null">-->
+<!--                    quantity = #{item.quantity},-->
+<!--                </if>-->
+<!--                <if test="item.total != null">-->
+<!--                    total = #{item.total},-->
+<!--                </if>-->
+<!--            </set>-->
+<!--            WHERE id = #{item.id}-->
+<!--        </foreach>-->
+<!--    </update>-->
 
-    <!-- List<HamburgerListOrderVO> listOrder();-->
-    <!--查詢所有Order表中的訂單數據-->
-    <select id="listOrder" resultType="com.hamburger.hamburger.pojo.vo.HamburgerListOrderVO">
-        SELECT
-        id,commodity,unitprice,quantity,total,ordernumber,schedule,today
-        FROM
-        hamburgerorder
-        ORDER BY
-        id;
-    </select>
+
 
 
     <!-- HamburgerDetailVO getById(Long id);-->
-    <!--根據id查詢訂單詳情-->
+    <!--根據id查詢購物車內的數據詳情-->
     <select id="getById" resultType="com.hamburger.hamburger.pojo.vo.HamburgerDetailVO">
       SELECT
       id,commodity,unitprice,quantity,total
@@ -98,8 +93,8 @@
       hamburgermenu
       WHERE
       id = #{id}
-
     </select>
+
 
     <!--HamburgerUpdateDetailVO getUpdateById(Integer id);-->
     <!--根據id修改訂單-->
@@ -110,7 +105,6 @@
       hamburgermenu
       WHERE
       id = #{id}
-
     </select>
 
 
@@ -118,6 +112,18 @@
     <!--查詢所有訂單數-->
     <select id="count" resultType="int">
     SELECT count(*) FROM hamburgermenu;
+    </select>
+
+
+    <!--List<HamburgerListItemVO> list();-->
+    <!--查詢所有menu表中的訂單數據-->
+    <select id="list" resultType="com.hamburger.hamburger.pojo.vo.HamburgerListItemVO">
+        SELECT
+        id,commodity,unitprice,quantity,total
+        FROM
+        hamburgermenu
+        ORDER BY
+        id;
     </select>
 
 

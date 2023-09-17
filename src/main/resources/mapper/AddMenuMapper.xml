@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hamburger.hamburger.mapper.AddMenuMapper">
+
+
+    <!--int insertAddMenu(HamburgerAddMenu hamburgerAddMenu);-->
+    <!--添加目錄數據-->
+    <insert id="insertAddMenu" useGeneratedKeys="true" keyProperty="id">
+       INSERT INTO addmenu(
+       commodity,meals,unitprice,recommend,descride
+       )VALUES (
+       #{commodity},#{meals},#{unitprice},#{recommend},#{descride}
+       )
+    </insert>
+
+
+    <!-- int countByName(String name);-->
+    <!--根據圖片名稱統計圖片名稱數據的數量-->
+    <select id="countByName" resultType="int">
+        SELECT count(*) FROM addmenu WHERE commodity=#{commodity}
+    </select>
+
+
+
+</mapper>

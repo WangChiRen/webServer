@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hamburger.hamburger.mapper.MenuListMapper">
+
+
+    <!--  int deleteMenuById(Integer id);-->
+    <!--根據id刪除管理員頁內的數據-->
+    <delete id="deleteMenuById">
+        DELETE FROM addmenu WHERE id=#{id}
+    </delete>
+
+
+    <!--int updateByIdMenu(HamburgerUpdateMenu hamburgerUpdateMenu);-->
+    <!--根據id修改表單數據-->
+    <update id="updateByIdMenu">
+        UPDATE
+        addmenu
+        <set>
+            <if test="commodity != null">
+                commodity=#{commodity},
+            </if>
+            <if test="meals != null">
+                meals=#{meals},
+            </if>
+            <if test="unitprice != null">
+                unitprice=#{unitprice},
+            </if>
+            <if test="recommend != null">
+                recommend=#{recommend},
+            </if>
+            <if test="descride != null">
+                descride=#{descride},
+            </if>
+        </set>
+        WHERE
+        id=#{id}
+    </update>
+
+
+    <!-- int updateByIdEditUpload(HamburgerEditUpload hamburgerEditUpload);-->
+    <!--根據id修改圖片數據-->
+    <update id="updateByIdEditUpload">
+        UPDATE
+        addmenu
+        <set>
+            <if test="commodity != null">
+                commodity=#{commodity},
+            </if>
+        </set>
+        WHERE
+        id=#{id}
+    </update>
+
+
+    <!--HamburgerDetailMenuVO getAddMenuId(Integer id);-->
+    <!--根據id查詢管理頁內的數據詳情-->
+    <select id="getAddMenuId" resultType="com.hamburger.hamburger.pojo.vo.HamburgerDetailMenuVO">
+      SELECT
+      id,commodity,meals,unitprice,recommend,descride
+      FROM
+      addmenu
+      WHERE
+      id = #{id}
+    </select>
+
+
+    <!-- HamburgerRemoveVO getCommodityName(Integer id);-->
+    <!--根據圖片名稱查詢AddMenu內的圖片名稱-->
+    <select id="getCommodityName" resultType="com.hamburger.hamburger.pojo.vo.HamburgerRemoveVO">
+      SELECT
+      commodity
+      FROM
+      addmenu
+      WHERE
+      id = #{id}
+    </select>
+
+
+    <!-- int countByName(String name);-->
+    <!--根據圖片名稱統計圖片名稱數據的數量-->
+    <select id="countByName" resultType="int">
+        SELECT count(*) FROM addmenu WHERE commodity=#{commodity}
+    </select>
+
+
+    <!--List<HamburgerListEditMenuVO> listEditMenu();-->
+    <!--查詢所有addMenu表中的訂單數據-->
+    <select id="listEditMenu" resultType="com.hamburger.hamburger.pojo.vo.HamburgerListEditMenuVO">
+        SELECT
+        id,commodity,meals,unitprice,recommend,descride
+        FROM
+        addmenu
+        ORDER BY
+        id;
+    </select>
+
+
+
+
+</mapper>
