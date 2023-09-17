@@ -119,7 +119,88 @@ web目錄內的類有
 10.根據id查訂單詳情頁的數據                      HamburgerDetailVO getById()
 11.根據id查詢要修改的訂單數據                    HamburgerUpdateDetailVO getUpdateById()
 
+---------------------------------
 
+2.0版本
+
+controller
+AddMenuController
+(完成) 新增AddMenuController類，處理AddMenuView接收或響應的數據
+
+HamburgerMenuController
+(完成) 新增HamburgerMenuController類，處理HamburgerMenuView接收或響應的數據
+
+MenuListController
+(完成) 新增MenuListController類，處理MenuListView接收或響應的數據
+
+OrderManagementController
+(完成) 新增OrderManagementController類，處理OrderManagementView接收或響應的數據
+
+ShoppingCarController
+(完成) 新增ShoppingCarController類，處理ShoppingCarView接收或響應的數據
+
+service
+AddMenuServiceImpl
+(完成) 新增AddMenuServiceImpl類，負責處理前端AddMenuView的業務邏輯 5min
+(完成) 新增繼承PictureBusiness，處理圖片邏輯 5min
+(完成) 新增添加圖片方法upload() 30min
+(完成) 新增添加目錄的方法addMenu() 1hr
+(完成) 新增添加圖片的方法upload() 2hr
+
+HamburgerMenuServiceImpl
+(完成) 新增HamburgerMenuServiceImpl類，負責處理前端HamburgerMenuView的業務邏輯 5min
+
+
+
+MenuListServiceImpl
+(完成) 新增MenuListServiceImpl類，負責處理前端MenuListView的業務邏輯 5min
+(完成) 新增繼承PictureBusiness，處理圖片邏輯 5min
+(完成) 新增刪除管理員頁面內的數據的方法deleteMenuById() 1hr
+(完成) 新增刪除圖片的方法remove() 1hr
+(完成) 新增編輯數據的方法updateByIdMenu() 1hr
+(完成) 新增編輯圖片的方法editUpload() 2hr
+
+OrderManagementServiceImpl
+(完成) 新增OrderManagementServiceImpl類，負責處理前端OrderManagementView的業務邏輯 5min
+
+
+ShoppingCarServiceImpl
+(完成) 新增ShoppingCarServiceImpl類，負責處理前端ShoppingCarView的業務邏輯 5min
+
+IAddMenuService 
+(完成) 新增AddMenuServiceImpl業務層接口 5min
+
+IHamburgerMenuService
+(完成) 新增HamburgerMenuServiceImpl業務層接口 5min
+
+IMenuListService
+(完成) 新增MenuListServiceImpl業務層接口 5min
+
+IOrderManagementService
+(完成) 新增OrderManagementServiceImpl業務層接口 5min
+
+IShoppingCarService
+(完成) 新增ShoppingCarServiceImpl業務層接口 5min
+
+PictureBusiness
+(完成) 新增處理圖片邏輯的父類PictureBusiness() 2hr
+
+
+mapper
+AddMenuMapper
+(完成) 新增AddMenuMapper類，處理AddMenuView數據庫相關操作  5min
+
+HamburgerMenuMapper
+(完成) 新增HamburgerMenuMapper類，處理HamburgerMenuView數據庫相關操作  5min
+
+MenuListMapper
+(完成) 新增MenuListMapper類，處理MenuListView數據庫相關操作  5min
+
+OrderManagementMapper
+(完成) 新增OrderManagementMapper類，處理OrderManagementView數據庫相關操作  5min
+
+ShoppingCarMapper
+(完成) 新增ShoppingCarMapper類，處理ShoppingCarView數據庫相關操作  5min
 
 
 
