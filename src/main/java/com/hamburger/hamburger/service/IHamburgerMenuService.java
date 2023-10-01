@@ -1,7 +1,7 @@
 package com.hamburger.hamburger.service;
 
 
-import com.hamburger.hamburger.pojo.dto.HamburgerAddNewDTO;
+import com.hamburger.hamburger.pojo.dto.HamburgerMenuAddNewDTO;
 import com.hamburger.hamburger.pojo.vo.HamburgerListMenuVO;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public interface IHamburgerMenuService {
     /**
      * 添加訂單數據
      */
-    void addNew(HamburgerAddNewDTO hamburgerAddNewDTO);
+    void addNew(HamburgerMenuAddNewDTO hamburgerMenuAddNewDTO);
 
 
     /**

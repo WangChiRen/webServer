@@ -3,17 +3,12 @@ package com.hamburger.hamburger;
 
 import com.hamburger.hamburger.mapper.*;
 import com.hamburger.hamburger.pojo.entity.*;
-import com.hamburger.hamburger.pojo.vo.HamburgerListItemVO;
-import com.hamburger.hamburger.pojo.vo.HamburgerListMenuVO;
-import com.hamburger.hamburger.pojo.vo.HamburgerRemoveVO;
+import com.hamburger.hamburger.pojo.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -21,25 +16,33 @@ import java.util.List;
 public class HamburgerMapperTests {
 
     @Autowired
-    AddMenuMapper addMenuMapper;
+    private LoginMapper loginMapper;
 
     @Autowired
-    HamburgerMenuMapper hamburgerMenuMapper;
+    private AddMenuMapper addMenuMapper;
 
     @Autowired
-    MenuListMapper menuListMapper;
+    private HamburgerMenuMapper hamburgerMenuMapper;
 
     @Autowired
-    OrderManagementMapper orderManagementMapper;
+    private MenuListMapper menuListMapper;
 
     @Autowired
-    ShoppingCarMapper shoppingCarMapper;
+    private OrderManagementMapper orderManagementMapper;
 
+    @Autowired
+    private ShoppingCarMapper shoppingCarMapper;
+
+    @Autowired
+    private AddAdminMapper addAdminMapper;
+
+    @Autowired
+    private AdminListMapper adminListMapper;
 
     @Test
     public void testAddNew() {
 
-        Hamburger hamburger = new Hamburger();
+        HamburgerMenu hamburger = new HamburgerMenu();
         hamburger.setTotal(2000);
         int rows = hamburgerMenuMapper.insert(hamburger);
         log.debug("rows 受引響行數:{}", rows);
@@ -66,7 +69,7 @@ public class HamburgerMapperTests {
     @Test
     public void testUpdateMenu() {
         Integer id = 162;
-        HamburgerUpdateMenu hamburgerUpdateMenu = new HamburgerUpdateMenu();
+        MenuListUpdateMenu hamburgerUpdateMenu = new MenuListUpdateMenu();
         hamburgerUpdateMenu.setId(id);
         hamburgerUpdateMenu.setUnitprice(300);
 
@@ -113,7 +116,7 @@ public class HamburgerMapperTests {
     @Test
     public void testUpdateOrderNumber() {
 
-        HamburgerNumber hamburgerNumber = new HamburgerNumber();
+        ShoppingCarNumber hamburgerNumber = new ShoppingCarNumber();
         hamburgerNumber.setOrdernumber(1);
         int rows = shoppingCarMapper.updateOrderNumber(hamburgerNumber);
         log.debug("rows 受引響行數:{}", rows);
@@ -123,7 +126,7 @@ public class HamburgerMapperTests {
     @Test
     public void testAddMenu() {
 
-        HamburgerAddMenu hamburgerAddMenu = new HamburgerAddMenu();
+        AddMenu hamburgerAddMenu = new AddMenu();
 
         hamburgerAddMenu.setDescride("444");
         hamburgerAddMenu.setRecommend(1.5);
@@ -150,4 +153,36 @@ public class HamburgerMapperTests {
         log.debug("受影響的行數:{}", rows);
 
     }
+
+    @Test
+    void testGetByAccount() {
+        String account = "B001";
+        LoginVO loginVO = loginMapper.getByAccount(account);
+        log.debug("{}", loginVO);
+    }
+
+    @Test
+    public void testAddAdminList() {
+        List<AddAdminVO> list = addAdminMapper.addAdminList();
+        for (AddAdminVO item : list) {
+            log.debug("item:{}", item);
+        }
+    }
+
+    @Test
+    public void testAdminList() {
+        List<AdminListVO> list = adminListMapper.adminList();
+        for (AdminListVO item : list) {
+            log.debug("item:{}", item);
+        }
+    }
+
+    @Test
+    public void testAddAdminRole() {
+        String description = "經理";
+        AddAdminDescriptionVO byDescriptionId = addAdminMapper.getByDescriptionId(description);
+        log.debug("byDescriptionId:{}", byDescriptionId);
+    }
+
+
 }

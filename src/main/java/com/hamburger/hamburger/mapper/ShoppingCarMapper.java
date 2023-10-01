@@ -1,8 +1,8 @@
 package com.hamburger.hamburger.mapper;
 
 
-import com.hamburger.hamburger.pojo.entity.HamburgerNumber;
-import com.hamburger.hamburger.pojo.entity.HamburgerUpdate;
+import com.hamburger.hamburger.pojo.entity.ShoppingCarNumber;
+import com.hamburger.hamburger.pojo.entity.ShoppingCarUpdate;
 import com.hamburger.hamburger.pojo.vo.HamburgerDetailVO;
 import com.hamburger.hamburger.pojo.vo.HamburgerListItemVO;
 import com.hamburger.hamburger.pojo.vo.HamburgerUpdateDetailVO;
@@ -53,19 +53,19 @@ public interface ShoppingCarMapper {
     /**
      * 使用一個方法 實現多種不同數據更新(想更新那些字段更新那些字段 不想更新的字段保持不變)
      *
-     * @param hamburger 不同的數據
+     * @param shoppingCarUpdate 不同的數據
      * @return 受引響行數
      */
-    int updateById(HamburgerUpdate hamburger);
+    int updateById(ShoppingCarUpdate shoppingCarUpdate);
 
 
     /**
      * 修改orderNumber數據
      *
-     * @param hamburgerNumber 修改orderNumber的數據
+     * @param shoppingCarNumber 修改orderNumber的數據
      * @return 受引響行數
      */
-    int updateOrderNumber(HamburgerNumber hamburgerNumber);
+    int updateOrderNumber(ShoppingCarNumber shoppingCarNumber);
 
 
     /**

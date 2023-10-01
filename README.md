@@ -202,6 +202,28 @@ OrderManagementMapper
 ShoppingCarMapper
 (完成) 新增ShoppingCarMapper類，處理ShoppingCarView數據庫相關操作  5min
 
+---------------------------------
+
+3.0版本
+
+config
+SecurityConfiguration
+(完成) 新增SecurityConfiguration類，使用Spring Security處理認證與授權相關問題  2hr
+
+controller
+ForgetPasswordController
+新增ForgetPasswordController類，處理ForgetPasswordView接收或響應的數據
+
+LoginController
+新增LoginController類，處理LoginView接收或響應的數據
+
+service
+AddMenuServiceImpl
+(完成) 修改insertAddAdmin方法，檢查帳號、手機、mail數據是否存在於數據庫中 2hr
+(完成) 修改insertAddAdmin方法，根據 description 查詢 ams_role 表內的數據id 2hr
+
+
+
 
 
 

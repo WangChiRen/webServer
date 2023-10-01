@@ -1,6 +1,6 @@
 package com.hamburger.hamburger.mapper;
 
-import com.hamburger.hamburger.pojo.entity.Hamburger;
+import com.hamburger.hamburger.pojo.entity.HamburgerMenu;
 import com.hamburger.hamburger.pojo.vo.HamburgerListMenuVO;
 import org.springframework.stereotype.Repository;
 
@@ -16,10 +16,10 @@ public interface HamburgerMenuMapper {
     /**
      * 插入數據給到購物車
      *
-     * @param hamburger 前端給的數據
+     * @param hamburgerMenu 前端給的數據
      * @return 受引響行數
      */
-    int insert(Hamburger hamburger);
+    int insert(HamburgerMenu hamburgerMenu);
 
 
     /**

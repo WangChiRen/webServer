@@ -2,7 +2,7 @@ package com.hamburger.hamburger.mapper;
 
 
 import com.hamburger.hamburger.pojo.entity.HamburgerEditUpload;
-import com.hamburger.hamburger.pojo.entity.HamburgerUpdateMenu;
+import com.hamburger.hamburger.pojo.entity.MenuListUpdateMenu;
 import com.hamburger.hamburger.pojo.vo.HamburgerDetailMenuVO;
 import com.hamburger.hamburger.pojo.vo.HamburgerListEditMenuVO;
 import com.hamburger.hamburger.pojo.vo.HamburgerRemoveVO;
@@ -29,10 +29,10 @@ public interface MenuListMapper {
     /**
      * 根據id修改目錄詳情數據
      *
-     * @param hamburgerUpdateMenu 修改MenuList的數據
+     * @param menuListUpdateMenu 修改MenuList的數據
      * @return 受引響行數
      */
-    int updateByIdMenu(HamburgerUpdateMenu hamburgerUpdateMenu);
+    int updateByIdMenu(MenuListUpdateMenu menuListUpdateMenu);
 
 
     /**

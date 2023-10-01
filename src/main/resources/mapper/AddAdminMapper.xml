@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hamburger.hamburger.mapper.AddAdminMapper">
+
+    <!--int insertAddAdmin(AddAdmin addAdmin);-->
+    <!--添加員工數據-->
+    <insert id="insertAddAdmin" useGeneratedKeys="true" keyProperty="id">
+       INSERT INTO ams_admin(
+       username,account,password,phone,mail,birthday,enable,description
+       )VALUES (
+       #{username},#{account},#{password},#{phone},#{mail},#{birthday},#{enable},#{description}
+       )
+    </insert>
+
+    <!-- int insertAddAdminRole(AddAdmin addAdmin);-->
+    <!--添加ams_admin中id對應的權限數據-->
+    <insert id="insertAddAdminRole" useGeneratedKeys="true" keyProperty="id">
+       INSERT INTO ams_admin_role(
+       admin_id,role_id
+       )VALUES (
+       #{admin_id},#{role_id}
+       )
+    </insert>
+
+    <!-- List<AddAdminVO> addAdminList();-->
+    <!--查詢所有 ams_role 列表數據-->
+    <select id="addAdminList" resultType="com.hamburger.hamburger.pojo.vo.AddAdminVO">
+        SELECT
+        id,name
+        FROM
+        ams_role
+        ORDER BY
+        id;
+    </select>
+
+    <!-- AddAdminRoleVO getByAccountId(String account);-->
+    <!--根據 account 查詢 ams_admin 表內的數據id-->
+    <select id="getByAccountId" resultType="com.hamburger.hamburger.pojo.vo.AddAdminRoleVO">
+      SELECT
+      id,description
+      FROM
+      ams_admin
+      WHERE
+      account = #{account}
+    </select>
+
+    <!-- AddAdminDescriptionVOVO getByDescriptionId(String description);-->
+    <!--根據 description 查詢 ams_role 表內的數據id-->
+    <select id="getByDescriptionId" resultType="com.hamburger.hamburger.pojo.vo.AddAdminDescriptionVO">
+      SELECT
+      id
+      FROM
+      ams_role
+      WHERE
+      name = #{name}
+    </select>
+
+    <!-- AddAdminAccountVO getAdminAccount(String account);-->
+    <!--根據 account 查詢 ams_admin 表內的數據-->
+    <select id="getAdminAccount" resultType="com.hamburger.hamburger.pojo.vo.AddAdminAccountVO">
+      SELECT
+      id, username, account, password, phone, mail, birthday, enable, description
+      FROM
+      ams_admin
+      WHERE
+      account = #{account}
+    </select>
+
+    <!-- AddAdminAccountVO getAdminPhone(String phone);-->
+    <!--根據 phone 查詢 ams_admin 表內的數據-->
+    <select id="getAdminPhone" resultType="com.hamburger.hamburger.pojo.vo.AddAdminAccountVO">
+      SELECT
+      id, username, account, password, phone, mail, birthday, enable, description
+      FROM
+      ams_admin
+      WHERE
+      phone = #{phone}
+    </select>
+
+    <!--AddAdminAccountVO getAdminMail(String mail);-->
+    <!--根據 mail 查詢 ams_admin 表內的數據-->
+    <select id="getAdminMail" resultType="com.hamburger.hamburger.pojo.vo.AddAdminAccountVO">
+      SELECT
+      id, username, account, password, phone, mail, birthday, enable, description
+      FROM
+      ams_admin
+      WHERE
+      mail = #{mail}
+    </select>
+
+
+
+</mapper>

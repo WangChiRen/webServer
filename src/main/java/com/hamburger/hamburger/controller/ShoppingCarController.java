@@ -1,17 +1,19 @@
 package com.hamburger.hamburger.controller;
 
-import com.hamburger.hamburger.pojo.dto.HamburgerUpdateByIdDTO;
-import com.hamburger.hamburger.pojo.dto.HamburgerUpdateOrderNumberDTO;
+import com.hamburger.hamburger.pojo.dto.ShoppingCarUpdateByIdDTO;
+import com.hamburger.hamburger.pojo.dto.ShoppingCarUpdateOrderNumberDTO;
 import com.hamburger.hamburger.pojo.vo.HamburgerListItemVO;
-
 import com.hamburger.hamburger.service.IShoppingCarService;
 import com.hamburger.hamburger.web.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
+/**
+ * 控制器層:負責接收前端 ShoppingCarView 的請求與響應
+ */
 @Slf4j
 @RestController
 @RequestMapping("/hamburgers")
@@ -73,16 +75,16 @@ public class ShoppingCarController {
     /**
      * 根據id修改訂單數據
      *
-     * @param hamburgerUpdateByIdDTO 訂單數據
+     * @param shoppingCarUpdateByIdDTO 訂單數據
      * @param id                     訂單id
      */
     @PostMapping("/{id}/update")
-    public JsonResult update(@RequestBody HamburgerUpdateByIdDTO hamburgerUpdateByIdDTO, @PathVariable Integer id) {
+    public JsonResult update(@RequestBody @Validated ShoppingCarUpdateByIdDTO shoppingCarUpdateByIdDTO, @PathVariable Integer id) {
 
         log.debug("開始處理:ShoppingCarController.update()");
         log.debug("根據id=" + id + "修改訂單");
         // hamburgerService.updateById(修改的數據,修改的id編號);
-        shoppingCarService.updateById(hamburgerUpdateByIdDTO, id);
+        shoppingCarService.updateById(shoppingCarUpdateByIdDTO, id);
         return JsonResult.ok();
 
     }
@@ -91,20 +93,20 @@ public class ShoppingCarController {
     /**
      * 根據id修改訂單編號
      *
-     * @param hamburgerUpdateOrderNumberDTO 訂單OrderNumber數據
+     * @param shoppingCarUpdateOrderNumberDTO 訂單OrderNumber數據
      */
     @PostMapping("/update-order")
-    public JsonResult updateOrderNumber(@RequestBody HamburgerUpdateOrderNumberDTO hamburgerUpdateOrderNumberDTO) {
+    public JsonResult updateOrderNumber(@RequestBody @Validated ShoppingCarUpdateOrderNumberDTO shoppingCarUpdateOrderNumberDTO) {
 
         log.debug("開始處理:ShoppingCarController.updateOrderNumber()");
-        shoppingCarService.updateOrderNumber(hamburgerUpdateOrderNumberDTO);
+        shoppingCarService.updateOrderNumber(shoppingCarUpdateOrderNumberDTO);
         return JsonResult.ok();
 
     }
 
 
     /**
-     * 查詢所有menu數據
+     * 查詢所有購物車內的數據
      */
     @GetMapping("list-shopping-car")
     public JsonResult list() {

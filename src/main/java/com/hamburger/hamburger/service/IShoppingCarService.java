@@ -1,8 +1,8 @@
 package com.hamburger.hamburger.service;
 
 
-import com.hamburger.hamburger.pojo.dto.HamburgerUpdateByIdDTO;
-import com.hamburger.hamburger.pojo.dto.HamburgerUpdateOrderNumberDTO;
+import com.hamburger.hamburger.pojo.dto.ShoppingCarUpdateByIdDTO;
+import com.hamburger.hamburger.pojo.dto.ShoppingCarUpdateOrderNumberDTO;
 import com.hamburger.hamburger.pojo.vo.HamburgerListItemVO;
 
 import java.util.List;
@@ -40,13 +40,13 @@ public interface IShoppingCarService {
     /**
      * 根據id 修改訂單數據
      */
-    void updateById(HamburgerUpdateByIdDTO hamburgerUpdateByIdDTO, Integer id);
+    void updateById(ShoppingCarUpdateByIdDTO shoppingCarUpdateByIdDTO, Integer id);
 
 
     /**
      * 修改orderNumber數據
      */
-    void updateOrderNumber(HamburgerUpdateOrderNumberDTO hamburgerUpdateOrderNumberDTO);
+    void updateOrderNumber(ShoppingCarUpdateOrderNumberDTO shoppingCarUpdateOrderNumberDTO);
 
 
     /**

@@ -1,7 +1,7 @@
 package com.hamburger.hamburger.service;
 
 
-import com.hamburger.hamburger.pojo.dto.HamburgerUpdateMenuDTO;
+import com.hamburger.hamburger.pojo.dto.MenuListUpdateMenuDTO;
 import com.hamburger.hamburger.pojo.vo.HamburgerListEditMenuVO;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,7 +22,7 @@ public interface IMenuListService {
     /**
      * 根據id 修改目錄的商品數據
      */
-    void updateByIdMenu(HamburgerUpdateMenuDTO hamburgerUpdateMenuDTO, Integer id);
+    void updateByIdMenu(MenuListUpdateMenuDTO menuListUpdateMenuDTO, Integer id);
 
 
     /**
