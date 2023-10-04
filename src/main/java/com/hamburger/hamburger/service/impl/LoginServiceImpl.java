@@ -37,7 +37,7 @@ public class LoginServiceImpl implements ILoginService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Transactional(rollbackFor = {Exception.class})
+
     @Override
     public String login(LoginDTO loginDTO) {
         log.debug("開始處理登入業務,參數:{}", loginDTO);

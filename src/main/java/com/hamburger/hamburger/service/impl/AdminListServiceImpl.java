@@ -11,6 +11,7 @@ import com.hamburger.hamburger.pojo.vo.AdminListDescriptionVO;
 import com.hamburger.hamburger.pojo.vo.AdminListVO;
 import com.hamburger.hamburger.pojo.vo.DeleteAdminByIdVO;
 import com.hamburger.hamburger.pojo.vo.HamburgerDetailMenuVO;
+import com.hamburger.hamburger.repo.IAdminListRepository;
 import com.hamburger.hamburger.service.IAdminListService;
 import com.hamburger.hamburger.web.ServiceCode;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +32,10 @@ public class AdminListServiceImpl implements IAdminListService {
     @Autowired
     private AdminListMapper adminListMapper;
 
-    @Transactional(rollbackFor = {Exception.class})
+    @Autowired
+    private IAdminListRepository adminListRepository;
+
+
     public void updateByIdAdmin(AdminListUpdateDTO adminListUpdateDTO, Integer id) {
         log.debug("開始編輯員工列表數據業務,id={},數據:{}", id, adminListUpdateDTO);
 
@@ -65,7 +69,7 @@ public class AdminListServiceImpl implements IAdminListService {
             if (rows != 1) {
                 String message = "修改失敗,狀態碼001,請稍後重試";
                 throw new ServiceException(ServiceCode.ERR_UPDATE, message);
-            }else {
+            } else {
 
                 AdminListRoleUpdate adminListRoleUpdate = new AdminListRoleUpdate();
 
@@ -74,13 +78,12 @@ public class AdminListServiceImpl implements IAdminListService {
 
                 //要修改的 ams_role 的名稱是
                 adminListRoleUpdate.setDescription(adminListUpdate.getDescription());
-                log.debug("ams_admin_role 修改的數據是:{}",adminListUpdate.getDescription());
+                log.debug("ams_admin_role 修改的數據是:{}", adminListUpdate.getDescription());
 
                 //要修改的 role_id 的數據是
                 AdminListDescriptionVO adminListDescriptionVO = adminListMapper.getByDescriptionId(adminListUpdate.getDescription());
                 adminListRoleUpdate.setRole_id(adminListDescriptionVO.getId());
-                log.debug("ams_admin_role 修改的role_id的是:{}",adminListDescriptionVO.getId());
-
+                log.debug("ams_admin_role 修改的role_id的是:{}", adminListDescriptionVO.getId());
 
 
                 int i = adminListMapper.updateByIdAdminRole(adminListRoleUpdate);
@@ -93,7 +96,7 @@ public class AdminListServiceImpl implements IAdminListService {
         }
     }
 
-    @Transactional(rollbackFor = {Exception.class})
+
     public void deleteAdminById(Integer id) {
         log.debug("開始刪除管理員頁的數據業務,id={}", id);
 
@@ -119,9 +122,10 @@ public class AdminListServiceImpl implements IAdminListService {
         }
     }
 
-    @Transactional(rollbackFor = {Exception.class})
+
     public List<AdminListVO> adminList() {
         log.debug("開始處理查詢 ams_admin 表中的業務");
-        return adminListMapper.adminList();
+        //直接返回緩存中的列表數據
+        return adminListRepository.adminList();
     }
 }

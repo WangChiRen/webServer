@@ -30,7 +30,7 @@ public class ForgetPasswordServiceImpl implements IForgetPasswordService {
     /**
      * 根據 account 修改 ams_admin 表中的密碼數據
      */
-    @Transactional(rollbackFor = {Exception.class})
+
     public void updateForgetPassword(ForgetPasswordDTO forgetPasswordDTO) {
         log.debug("開始處理忘記密碼頁的數據業務,數據={}", forgetPasswordDTO);
 

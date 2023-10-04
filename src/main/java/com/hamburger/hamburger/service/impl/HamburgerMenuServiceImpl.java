@@ -7,6 +7,7 @@ import com.hamburger.hamburger.mapper.HamburgerMenuMapper;
 import com.hamburger.hamburger.pojo.dto.HamburgerMenuAddNewDTO;
 import com.hamburger.hamburger.pojo.entity.HamburgerMenu;
 import com.hamburger.hamburger.pojo.vo.HamburgerListMenuVO;
+import com.hamburger.hamburger.repo.IHamburgerMenuRepository;
 import com.hamburger.hamburger.service.IHamburgerMenuService;
 import com.hamburger.hamburger.web.ServiceCode;
 import lombok.extern.slf4j.Slf4j;
@@ -29,8 +30,11 @@ public class HamburgerMenuServiceImpl implements IHamburgerMenuService {
     @Autowired
     private HamburgerMenuMapper hamburgerMenuMapper;
 
+    @Autowired
+    private IHamburgerMenuRepository hamburgerMenuRepository;
 
-    @Transactional(rollbackFor = {Exception.class})
+
+
     public void addNew(@RequestBody HamburgerMenuAddNewDTO hamburgerMenuAddNewDTO) {
         log.debug("開始處理:HamburgerMenuServiceImpl.addNew(),參數:{}", hamburgerMenuAddNewDTO);
         int counts = hamburgerMenuMapper.count();
@@ -58,10 +62,10 @@ public class HamburgerMenuServiceImpl implements IHamburgerMenuService {
     }
 
 
-    @Transactional(rollbackFor = {Exception.class})
+
     public List<HamburgerListMenuVO> listMenu() {
         log.debug("開始處理:HamburgerMenuServiceImpl.addNew()");
-        return hamburgerMenuMapper.listMenu();
+        return hamburgerMenuRepository.hamburgerMenu();
     }
 
 

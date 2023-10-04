@@ -56,7 +56,6 @@ public class PictureBusiness {
     }
 
 
-    @Transactional(rollbackFor = {Exception.class})
     public String uploadImg(@RequestParam("picFile") MultipartFile picFile, String methodName) {
         String resultFileName = ""; // 初始化一個變量來存儲文件名
 

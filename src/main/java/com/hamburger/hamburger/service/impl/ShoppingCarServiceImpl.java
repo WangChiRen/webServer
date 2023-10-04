@@ -32,7 +32,8 @@ public class ShoppingCarServiceImpl implements IShoppingCarService {
     private ShoppingCarMapper shoppingCarMapper;
 
 
-    @Transactional(rollbackFor = {Exception.class})
+
+
     public void addOrder() {
         log.debug("開始處理添加訂單業務至Order的操作");
         int rows = shoppingCarMapper.insertOrder();
@@ -46,7 +47,6 @@ public class ShoppingCarServiceImpl implements IShoppingCarService {
     /**
      * 送出訂單後,刪除購物車內的訂單
      */
-    @Transactional(rollbackFor = {Exception.class})
     public void deleteByData() {
         log.debug("開始刪除全部的訂單業務，因為送出訂單了");
         int rows = shoppingCarMapper.deleteByData();
@@ -61,11 +61,11 @@ public class ShoppingCarServiceImpl implements IShoppingCarService {
     /**
      * 根據id刪除購物車內的訂單
      */
-    @Transactional(rollbackFor = {Exception.class})
     public void deleteById(Integer id) {
         log.debug("開始刪除購物車內的訂單業務,id={}", id);
 
         HamburgerDetailVO hamburger = shoppingCarMapper.getById(id);
+
 
         if (hamburger == null) {
             String message = "刪除購物車內的訂單失敗,刪除的訂單(id=" + id + ")不存在";
@@ -83,7 +83,6 @@ public class ShoppingCarServiceImpl implements IShoppingCarService {
     /**
      * 關閉或刷新瀏覽器時刪除全部訂單
      */
-    @Transactional(rollbackFor = {Exception.class})
     public void deleteShoppingCartData() {
         log.debug("開始刪除全部的訂單業務，因為刷新或關閉瀏覽器了");
         int counts = shoppingCarMapper.count();
@@ -95,7 +94,6 @@ public class ShoppingCarServiceImpl implements IShoppingCarService {
     }
 
 
-    @Transactional(rollbackFor = {Exception.class})
     public void updateById(ShoppingCarUpdateByIdDTO shoppingCarUpdateByIdDTO, Integer id) {
         log.debug("開始編輯訂單業務,數據:{}",shoppingCarUpdateByIdDTO);
 
@@ -130,7 +128,6 @@ public class ShoppingCarServiceImpl implements IShoppingCarService {
     }
 
 
-    @Transactional(rollbackFor = {Exception.class})
     public void updateOrderNumber(ShoppingCarUpdateOrderNumberDTO shoppingCarUpdateOrderNumberDTO) {
         log.debug("開始編輯OrderNumber的業務,數據:{}", shoppingCarUpdateOrderNumberDTO);
         // 創建實體對象
@@ -149,7 +146,6 @@ public class ShoppingCarServiceImpl implements IShoppingCarService {
     }
 
 
-    @Transactional(rollbackFor = {Exception.class})
     public List<HamburgerListItemVO> list() {
         log.debug("開始處理查詢hamburgermenu表中的業務");
 

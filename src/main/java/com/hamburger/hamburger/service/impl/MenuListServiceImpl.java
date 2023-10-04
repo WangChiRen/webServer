@@ -7,6 +7,7 @@ import com.hamburger.hamburger.pojo.dto.MenuListUpdateMenuDTO;
 import com.hamburger.hamburger.pojo.entity.MenuListUpdateMenu;
 import com.hamburger.hamburger.pojo.vo.HamburgerDetailMenuVO;
 import com.hamburger.hamburger.pojo.vo.HamburgerListEditMenuVO;
+import com.hamburger.hamburger.repo.IMenuListRepository;
 import com.hamburger.hamburger.service.IMenuListService;
 import com.hamburger.hamburger.web.ServiceCode;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,9 @@ public class MenuListServiceImpl extends PictureBusiness implements IMenuListSer
 
     @Autowired
     private MenuListMapper menuListMapper;
+
+    @Autowired
+    private IMenuListRepository menuListRepository;
 
 
     /**
@@ -80,7 +84,6 @@ public class MenuListServiceImpl extends PictureBusiness implements IMenuListSer
      * @param menuListUpdateMenuDTO 編輯的數據
      * @param id                     要編輯的id
      */
-    @Transactional(rollbackFor = {Exception.class})
     public void updateByIdMenu(MenuListUpdateMenuDTO menuListUpdateMenuDTO, Integer id) {
         log.debug("開始編輯目錄數據業務,id={},數據:{}", id, menuListUpdateMenuDTO);
 
@@ -121,7 +124,6 @@ public class MenuListServiceImpl extends PictureBusiness implements IMenuListSer
     }
 
 
-    @Transactional(rollbackFor = {Exception.class})
     public String editUpload(@RequestParam("picFile") MultipartFile picFile) {
         log.debug("開始處理編輯圖片業務,參數:{}", picFile);
         return super.uploadImg(picFile, "editUpload");
@@ -129,10 +131,9 @@ public class MenuListServiceImpl extends PictureBusiness implements IMenuListSer
 
 
 
-    @Transactional(rollbackFor = {Exception.class})
     public List<HamburgerListEditMenuVO> listEditMenu() {
         log.debug("開始處理查詢addMenu表中的業務");
-        return menuListMapper.listEditMenu();
+        return menuListRepository.menuList();
     }
 
 

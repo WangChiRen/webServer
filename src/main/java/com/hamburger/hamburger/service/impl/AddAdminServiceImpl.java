@@ -7,6 +7,7 @@ import com.hamburger.hamburger.pojo.dto.AddAdminDTO;
 import com.hamburger.hamburger.pojo.entity.AddAdmin;
 import com.hamburger.hamburger.pojo.entity.AddAdminRole;
 import com.hamburger.hamburger.pojo.vo.*;
+import com.hamburger.hamburger.repo.IAddAdminRepository;
 import com.hamburger.hamburger.service.IAddAdminService;
 import com.hamburger.hamburger.web.ServiceCode;
 import lombok.extern.slf4j.Slf4j;
@@ -32,8 +33,10 @@ public class AddAdminServiceImpl implements IAddAdminService {
     @Autowired
     private AddAdminMapper addAdminMapper;
 
+    @Autowired
+    private IAddAdminRepository addAdminRepository;
 
-    @Transactional(rollbackFor = {Exception.class})
+
     public void insertAddAdmin(AddAdminDTO addAdminDTO) {
         log.debug("開始處理添加表單數據業務,參數:{}", addAdminDTO);
 
@@ -103,9 +106,9 @@ public class AddAdminServiceImpl implements IAddAdminService {
         }
     }
 
-    @Transactional(rollbackFor = {Exception.class})
+
     public List<AddAdminVO> addAdminList() {
         log.debug("開始處理查詢 ams_role 表中的業務");
-        return addAdminMapper.addAdminList();
+        return addAdminRepository.addAdmin();
     }
 }

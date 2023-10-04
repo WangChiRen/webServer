@@ -222,6 +222,36 @@ AddMenuServiceImpl
 (完成) 修改insertAddAdmin方法，檢查帳號、手機、mail數據是否存在於數據庫中 2hr
 (完成) 修改insertAddAdmin方法，根據 description 查詢 ams_role 表內的數據id 2hr
 
+---------------------------------
+
+4.0版本
+
+-使用Redis儲存列表數據
+
+config
+RedisConfiguration
+(完成) 新增RedisConfiguration類，使用Redis儲存一些數據，在程式的執行過程中，將優先從Redis中讀寫數據，以提高效率  4hr
+ScheduledConfiguration
+(完成) 新增ScheduledConfiguration類，開啟排程任務  1hr
+
+schedule
+(完成) 新增CacheSchedule類，開啟排程任務，根據@Scheduled註解配置週期性的執行  1hr
+
+repo
+(完成) 新增IAddAdminRepository介面
+(完成) 新增IAdminListRepository介面
+(完成) 新增IHamburgerMenuRepository介面
+(完成) 新增IMenuListRepository介面
+(完成) 新增IOrderManagementRepository介面
+(完成) 新增AddAdminRepository實現類，用於存取 MySQL 中的 ams_role 列表數據，以及刪除Redis中的列表數據  
+(完成) 新增AdminListRepository實現類，用於存取 MySQL 中的 ams_admin 列表數據，以及刪除Redis中的列表數據  
+(完成) 新增HamburgerMenuRepository實現類，用於存取 MySQL 中的 hamburger_menu 列表數據，以及刪除Redis中的列表數據  
+(完成) 新增MenuListRepository實現類，用於存取 MySQL 中的 add_menu 列表數據，以及刪除Redis中的列表數據  
+(完成) 新增OrderManagementRepository實現類，用於存取 MySQL 中的 hamburger_order 列表數據，以及刪除Redis中的列表數據 
+(完成) 新增SuperRepository父類，將AddAdminRepository、AdminListRepository、HamburgerMenuRepository、
+MenuListRepository、OrderManagementRepository，共有的方法提取到父類中
+
+
 
 
 

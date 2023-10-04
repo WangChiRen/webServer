@@ -27,7 +27,7 @@ public class AddMenuServiceImpl extends PictureBusiness implements IAddMenuServi
     private AddMenuMapper addMenuMapper;
 
 
-    @Transactional(rollbackFor = {Exception.class})
+
     public void addMenu(@RequestBody AddMenuDTO addMenuDTO) {
         log.debug("開始處理添加表單數據業務,參數:{}", addMenuDTO);
         // 創建實體對象
@@ -48,7 +48,7 @@ public class AddMenuServiceImpl extends PictureBusiness implements IAddMenuServi
     }
 
 
-    @Transactional(rollbackFor = {Exception.class})
+
     public String upload(@RequestParam("picFile") MultipartFile picFile) {
         log.debug("開始處理添加圖片業務,參數:{}", picFile);
         return super.uploadImg(picFile, "upload");
